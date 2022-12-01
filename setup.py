@@ -209,7 +209,6 @@ if __name__ == '__main__':
         setup_requires=['pytest-runner', 'numpy', 'cython'],
         tests_require=['pytest'],
         install_requires=get_install_requires(),
-        '''ext_modules=get_ext_modules(),'''
         cmdclass={'build_ext': BuildExtension},
         zip_safe=False)
     # Windows need pycocotools here: https://github.com/philferriere/cocoapi#subdirectory=PythonAPI
