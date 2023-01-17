@@ -2,6 +2,8 @@ import torch.nn as nn
 from torch.autograd import Function
 from torch.autograd.function import once_differentiable
 from torch.nn.modules.utils import _pair
+
+!g++ -fPIC -shared roi_align_cuda.cpp -I utils/roi_align/src -o roi_align_cuda.so 
 from utils.roi_align.src import roi_align_cuda
 
 class RoIAlignFunction(Function):
