@@ -3,7 +3,7 @@
 #include <cmath>
 #include <vector>
 
-extern "C"{
+
   int ROIAlignForwardLaucher(const at::Tensor features, const at::Tensor rois,
                              const float spatial_scale, const int sample_num,
                              const int channels, const int height,
@@ -84,4 +84,4 @@ extern "C"{
     m.def("forward", &roi_align_forward_cuda, "Roi_Align forward (CUDA)");
     m.def("backward", &roi_align_backward_cuda, "Roi_Align backward (CUDA)");
   }
-}
+
