@@ -2,11 +2,7 @@ import torch.nn as nn
 from torch.autograd import Function
 from torch.autograd.function import once_differentiable
 from torch.nn.modules.utils import _pair
-import ctypes
-ll = ctypes.cdll.LoadLibrary
-lib = ll('utils.roi_align.src/roi_align_cuda.so')
-lib.test(100)
-
+from utils.roi_align.src import roi_align_cuda
 
 class RoIAlignFunction(Function):
 
@@ -24,7 +20,7 @@ class RoIAlignFunction(Function):
 
         output = features.new_zeros(num_rois, num_channels, out_h, out_w)
         if features.is_cuda:
-            lib.forward(features, rois, out_h, out_w, spatial_scale,
+            roi_align_cuda.forward(features, rois, out_h, out_w, spatial_scale,
                                    sample_num, output)
         else:
             raise NotImplementedError
@@ -48,7 +44,7 @@ class RoIAlignFunction(Function):
         if ctx.needs_input_grad[0]:
             grad_input = rois.new_zeros(batch_size, num_channels, data_height,
                                         data_width)
-            lib.backward(grad_output.contiguous(), rois, out_h,
+            roi_align_cuda.backward(grad_output.contiguous(), rois, out_h,
                                     out_w, spatial_scale, sample_num,
                                     grad_input)
 
