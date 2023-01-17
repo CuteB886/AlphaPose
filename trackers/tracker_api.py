@@ -24,10 +24,10 @@ from trackers.utils.kalman_filter import KalmanFilter
 from trackers.tracking.matching import *
 from trackers.tracking.basetrack import BaseTrack, TrackState
 from trackers.utils.transform import build_transforms
-from ReidModels.ResBnLin import ResModel
-from ReidModels.osnet import *
-from ReidModels.osnet_ain import osnet_ain_x1_0
-from ReidModels.resnet_fc import resnet50_fc512
+from trackers.ReidModels.ResBnLin import ResModel
+from trackers.ReidModels.osnet import *
+from trackers.ReidModels.osnet_ain import osnet_ain_x1_0
+from trackers.ReidModels.resnet_fc import resnet50_fc512
 
 class STrack(BaseTrack):
     shared_kalman = KalmanFilter()
